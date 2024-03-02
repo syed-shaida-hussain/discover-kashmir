@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    flex: 1;
+}
+
+@media only screen and (max-width : 1280px) {
+    .links{
+        gap: 15px;
+    }
+}
+
+@media only screen and (max-width : 1024px) {
+    .logo{
+        flex: 1.5;
+    }
+}
+
+@media only screen and (max-width : 768px) {
+    .logo{
+        font-size: 22px;
+        flex: 3;
+    }
+
+    .links{
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width : 640px) {
+    .link{
+        display: none;
+    }
+
+    .links{
+        justify-content: flex-end;
+        gap : 15px;
+        font-size: 30px;
+    }
+}

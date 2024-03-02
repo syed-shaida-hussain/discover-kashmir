@@ -1,0 +1,35 @@
+.link{
+    cursor: pointer;
+}
+
+.burger {
+    display : none
+}
+
+.responsiveMenu{
+    display: none;
+}
+
+@media only screen and (max-width : 640px) {
+    .burger{
+        display: block;
+    }
+
+    .link {
+        display: none;
+    }
+
+    .responsiveMenu{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        background-color: var(--bg);
+        height: calc(100vh - 100px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+    }
+}
