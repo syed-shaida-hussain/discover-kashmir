@@ -1,0 +1,61 @@
+.title{
+    margin: 30px 0;
+}
+
+.categories{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.category{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: capitalize;
+    justify-content: center;
+    border-radius: 10px;
+    width: 15%;
+    height: 60px;
+}
+
+.category.gulmarg{
+    background-color: #57c4ff31;
+}
+
+.category.pahalgam{
+    background-color: #57c4cc31;
+}
+
+.category.aharbal{
+    background-color: #57c4aa31;
+}
+
+.image{
+    border-radius: 50%;
+}
+
+@media only screen and (max-width : 1280px) {
+    .category{
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width : 1024px) {
+    .category{
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width : 768px) {
+    .category{
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width : 640px) {
+    .category{
+        width: 100%;
+    }
+}

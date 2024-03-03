@@ -13,7 +13,6 @@ export default function Home() {
         <CardList />
         <Menu />
       </div>
-
     </div>
   );
 }
