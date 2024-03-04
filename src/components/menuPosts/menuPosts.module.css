@@ -1,0 +1,68 @@
+.items{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin: 20px 0;
+}
+
+.item{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.imgContainer{
+    flex: 1;
+    position: relative;
+    aspect-ratio: 1/1;
+}
+
+.image{
+    border-radius: 50%;
+    border :3px solid lightgray;
+    object-fit: cover;
+}
+
+.textContainer{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.category{
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    width: max-content;
+}
+
+.category.gulmarg{
+    background-color: #57c4ff31;
+}
+
+.category.aharbal{
+    background-color: #da85c731;
+}
+
+.category.pahalgam{
+    background-color: #7fb88133;
+}
+
+.category.yusmarg{
+    background-color: #ffb04f45;
+}
+
+.postTitle{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--light-text-color);
+}
+
+.detail{
+    font-size: 12px ;
+}
+
+.date{
+    color: gray;
+}
