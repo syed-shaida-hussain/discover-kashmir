@@ -3,7 +3,8 @@
 }
 
 .burger {
-    display : none
+    display: none;
+    color: var(--text-color);
 }
 
 .responsiveMenu{
@@ -12,7 +13,7 @@
 
 @media only screen and (max-width : 640px) {
     .burger{
-        display: block;
+        display: inline;
     }
 
     .link {

@@ -38,3 +38,13 @@
     font-weight: 300;
     color: var(--light-text-color);
 }
+
+@media only screen and (max-width : 1280px) {
+    .container{
+        display: block;
+    }
+
+    .details{
+        margin-top: 10px;
+    }
+}

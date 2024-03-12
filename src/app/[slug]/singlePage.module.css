@@ -1,0 +1,104 @@
+.container{
+
+}
+
+.infoContainer{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.textContainer{
+    flex: 1;
+}
+
+.title{
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.userTextContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--light-text-color);
+}
+
+.userImgContainer{
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.avatar{
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.imgContainer{
+    flex: 1;
+    height: 350px;
+    position: relative;
+}
+
+.image{
+    object-fit: cover;
+}
+
+.content{
+    display: flex;
+    gap: 50px;
+}
+
+.post{
+    flex: 5;
+    margin-top: 50px;
+}
+
+.description p {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width : 1536px) {
+    .title{
+        font-size: 44px;
+    }
+}
+
+@media only screen and (max-width : 1280px) {
+    .title{
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width : 1024px) {
+    .infoContainer{
+        display: block;
+    }
+
+    .imgContainer{
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width : 640px) {
+    .title{
+        font-size: 30px;
+    }
+
+    .description p{
+        font-size: 18px;
+    }
+}

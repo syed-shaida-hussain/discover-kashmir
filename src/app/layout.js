@@ -5,6 +5,7 @@ import Footer from "@/components/footer/Footer";
 import { Providers } from "./GlobalRedux/provider";
 import ThemeProvider from "./GlobalRedux/features/theme/ThemeProvider";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,6 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+      </head>
       <body className={inter.className}>
         <Providers>
           <ThemeProvider>

@@ -3,10 +3,9 @@
 import React, { useState } from 'react';
 import styles from "./authLinks.module.css";
 import Link from 'next/link';
-import Image from 'next/image';
 
 const AuthLinks = () => {
-  const status = "notauthenticated";
+  const status = "authenticated";
   const [open , setOpen] = useState(false)
   return (
     <>
@@ -16,7 +15,9 @@ const AuthLinks = () => {
           <span className= {styles.link}>Logout</span>
         </>
       }
-      <Image src= "/menu.png" alt='menu icon' width={22} height={22} className= {styles.burger} onClick={() => setOpen(!open)} />
+      <div className= {styles.burger}>
+      {!open ? <span className={`material-symbols-outlined ${styles.burger}`} onClick={() => setOpen(true)} >menu</span> : <span className={`material-symbols-outlined ${styles.burger}`} onClick={() => setOpen(false)}>close</span>}
+      </div>
       {
         open && (
           <div className= {styles.responsiveMenu}>
