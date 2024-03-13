@@ -1,6 +1,5 @@
 "use client";
 
-import Image from 'next/image'
 import styles from './writePage.module.css'
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
