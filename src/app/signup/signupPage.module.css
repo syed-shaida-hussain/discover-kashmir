@@ -26,7 +26,6 @@
     border: 1px solid var(--text-color);
     outline: none;
     background: none;
-    color: var(--text-color);
 }
 
 .label{
