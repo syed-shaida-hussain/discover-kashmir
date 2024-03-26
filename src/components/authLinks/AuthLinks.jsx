@@ -1,18 +1,36 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from "./authLinks.module.css";
 import Link from 'next/link';
+import axios from "axios"
+import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '@/app/GlobalRedux/features/user/userSlice';
 
 const AuthLinks = () => {
-  const status = "authenticated";
-  const [open , setOpen] = useState(false)
+  const [open , setOpen] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const {isUserLoggedIn} = useSelector((store) => store.user)
+
+  const logout = async () => {
+    try {
+      const res = await axios.get("/api/user/logout")
+      router.push('/login')
+      localStorage.removeItem("token");
+      dispatch(logoutUser())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       {
-        status === "notauthenticated" ? <Link href= "/login" className= {styles.link}>Login</Link> : <>
-          <Link className= {styles.link} href="/create">Create</Link>
-          <span className= {styles.link}>Logout</span>
+        !isUserLoggedIn  ? <Link href= "/login" className= {styles.link}>Login</Link> : <>
+          <Link className= {styles.link} href="/write">Create</Link>
+          <span className= {styles.link} onClick={() =>logout()}>Logout</span>
         </>
       }
       <div className= {styles.burger}>
@@ -24,13 +42,12 @@ const AuthLinks = () => {
             <Link href="/">Homepage</Link>
             <Link href="/about">About</Link>
             <Link href="/contact">Contact</Link>
-            {
-          status === "notauthenticated" ? <Link href= "/login">Login</Link> : <>
-          <Link href="/create">Create</Link>
-          <span className= {styles.link}>Logout</span>
-        </>
-      }
-
+          {
+          !isUserLoggedIn ? <Link href= "/login">Login</Link> : <>
+          <Link href="/write">Create</Link>
+          <span className= {styles.link} onClick={() =>logout()}>Logout</span>
+          </>
+          }
           </div>
         )
       }

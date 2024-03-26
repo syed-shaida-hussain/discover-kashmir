@@ -6,27 +6,21 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 
 const WritePage = () => {
-const [isOpen , setIsOpen] = useState(false);
 const [value , setValue] = useState("");
   return (
     <div className= {styles.container}>
-        <input type='text' placeholder='Title' className= {styles.input} />
+        <div className= {styles.flex}>
+            <input type='text' placeholder='Title' className= {styles.input} />
+            <button className= {styles.publish}>Publish</button>
+        </div>
         <div className= {styles.editor}>
-            <button className= {styles.button} onClick={() => setIsOpen(!isOpen)}>
-                <span className= {`material-symbols-outlined ${styles.icon}`}>add</span>
-            </button>
-            {isOpen && <div className= {styles.add}>
-                <button className= {styles.addButton}>
-                    <span className= {`material-symbols-outlined ${styles.icon}`}>add_photo_alternate</span>
-                </button> <button className= {styles.addButton}>
-                    <span className= {`material-symbols-outlined ${styles.icon}`}>upload</span>
-                </button> <button className= {styles.addButton}>
-                    <span className= {`material-symbols-outlined ${styles.icon}`}>play_arrow</span>
-                </button>
-            </div>}
+            
+            <input type='file' id='image' className= {styles.file} />
+            <label htmlFor='image' className= {styles.label}>
+                <span className= {`material-symbols-outlined ${styles.icon}`}>add_photo_alternate</span>
+            </label>
             <ReactQuill className= {styles.textArea} theme='bubble' value={value} onChange={setValue} placeholder='Tell your story...' />
         </div>
-        <button className= {styles.publish}>Publish</button>
     </div>
   )
 }

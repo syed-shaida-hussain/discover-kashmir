@@ -5,35 +5,8 @@
     position: relative;
 }
 
-.button, .addButton{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: transparent;
-    color: white;
-    border: 1.5px solid var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
 .icon{
     color: var(--text-color);
-}
-
-.addButton{
-    border-color: #1a8917;
-}
-
-.add{
-    display: flex;
-    gap: 20px;
-    background: var(--bg);
-    position: absolute;
-    z-index: 999;
-    width: 100%;
-    left: 50px;
 }
 
 .input{
@@ -53,13 +26,33 @@
 }
 
 .publish{
-    position: absolute;
-    top: 30px;
-    right: 20px;
     padding: 10px 20px;
     border: none;
     background-color: #1a8917;
     color: white;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.file{
+    display: none;
+}
+
+.label{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1.5px solid #1a8917;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
