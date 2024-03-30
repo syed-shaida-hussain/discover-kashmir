@@ -16,7 +16,3 @@ export default function Home() {
     </div>
   );
 }
-
-// syedshaida
-// H7kWJCFT1rI4fltD
-// mongodb+srv://syedshaida:H7kWJCFT1rI4fltD@discover-kashmir.o2p6aiw.mongodb.net/
