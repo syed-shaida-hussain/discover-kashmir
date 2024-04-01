@@ -13,6 +13,7 @@ import 'react-quill/dist/quill.bubble.css';
     file : "",
     author : {}
   })
+  console.log(value)
   const handleAddPost = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -29,9 +30,6 @@ import 'react-quill/dist/quill.bubble.css';
   const getLoggedInUser = async () => {
     const res = await axios.get("/api/user/me");
     setPostData({...postData, author : res?.data?.user})
-    const res2 = await axios.get("/api/posts")
-    console.log(res2)
-
   }
 
   useEffect(() => {
