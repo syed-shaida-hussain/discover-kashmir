@@ -22,7 +22,6 @@ const LoginPage = () => {
         setError({...error , usernameError : res?.data?.errors?.username , passwordError : res?.data?.errors?.password})
       }
       if(res?.data?.status === 200){
-        localStorage.setItem("token" , res?.data?.token)
         dispatch(loginUser())
         router.push("/");
       }

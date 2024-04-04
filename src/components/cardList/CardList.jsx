@@ -24,7 +24,7 @@ const CardList = () => {
       <h1 className= {styles.title}>Recent Posts</h1>
       <div className= {styles.posts}>
         {
-          posts.map((post) => <Card key={post?._id} post={post} />)
+          posts?.map((post) => <Card key={post?._id} post={post} />)
         }
       </div>
       <Pagination />

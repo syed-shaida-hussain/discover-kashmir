@@ -13,7 +13,6 @@ import 'react-quill/dist/quill.bubble.css';
     file : "",
     author : {}
   })
-  console.log(value)
   const handleAddPost = async (e) => {
     e.preventDefault();
     const data = new FormData();

@@ -16,7 +16,7 @@ export const Card = ({post}) => {
             </div>
             <h1>{post?.title}</h1>
             <p className= {styles.desc} dangerouslySetInnerHTML={{__html: post?.value}} />
-            <Link href= "/" className= {styles.link}>Read More</Link>
+            <Link href= {`/blogs/${post._id}`} className= {styles.link}>Read More</Link>
         </div>
     </div>
   )

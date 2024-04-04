@@ -4,18 +4,19 @@ import { NextResponse } from "next/server";
 
 connect();
 
-export async function GET () {
+export async function GET ( request , {params} ) {
     try {
-        const posts = await Post.find({})
+        const {id} = params
+        const post = await Post.findById({_id : id})
         return NextResponse.json({
-            message : "All posts",
+            message : "Single post",
             success : true,
             status : 200,
-            posts
+            post
         })
     } catch (error) {
         return NextResponse.json({
-            message: "could'nt get posts",
+            message: "could'nt get single post",
             error : error.message,
             status : 500,
     })

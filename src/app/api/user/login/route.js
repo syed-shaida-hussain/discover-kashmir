@@ -3,6 +3,7 @@ import User from "@/models/userModel";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
+import { setCookie } from "cookies-next";
 
 connect();
 
@@ -63,13 +64,11 @@ export async function POST (request) {
             user,
             token
         })
-        response.cookies.set("token" , token , {
-            httpOnly : true
-        })
+        response.cookies.set("token" , token)
+        setCookie('token', token);
 
         return response
         } catch (error) {
-        console.log(error)
         const errors = handleErrors(error);
         return NextResponse.json({
                 message: "Problem in logging in",

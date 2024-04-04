@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getCookie } from "cookies-next";
 
 const initialState = {
-    isUserLoggedIn : localStorage.getItem("token") ? true : false
+    isUserLoggedIn : getCookie("token") ? true : false
 }
-
 const userSlice = createSlice({
     name : "user",
     initialState,
