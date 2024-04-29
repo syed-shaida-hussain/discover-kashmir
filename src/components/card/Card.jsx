@@ -13,9 +13,10 @@ export const Card = ({post}) => {
         <div className= {styles.textContainer}>
             <div className= {styles.details}>
                 <span className= {styles.date}>11.02.2024</span>
+                <span className= {styles.date}>Author : @{post?.authorName}</span>
             </div>
             <h1>{post?.title}</h1>
-            <p className= {styles.desc} dangerouslySetInnerHTML={{__html: post?.value}} />
+            <p className= {styles.desc} dangerouslySetInnerHTML={{__html: post?.value.length > 400 ? post?.value.substr(0,400) + " ..." : post?.value}} />
             <Link href= {`/blogs/${post._id}`} className= {styles.link}>Read More</Link>
         </div>
     </div>

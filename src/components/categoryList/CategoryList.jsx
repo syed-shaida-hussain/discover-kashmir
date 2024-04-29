@@ -1,21 +1,30 @@
 import React from 'react';
 import styles from "./categoryList.module.css"
 import Link from 'next/link';
-import Image from 'next/image';
 
 const CategoryList = () => {
   return (
     <div className= {styles.container}>
-      <h1 className= {styles.title}>Popular places </h1>
+      <h1 className= {styles.title}>Popular Categories </h1>
       <div className= {styles.categories}>
-          <Link href= "/blog?cat=gulmarg" className={`${styles.category} ${styles.gulmarg}`}>
-              <Image src= "/gulmarg.avif" alt='category-logo' width={32} height={32} className= {styles.image} /> Gulmarg
+          <Link href= "/blog?cat=winter-wonders" className={`${styles.category} ${styles.winter}`}>
+              Winter wonders
           </Link>
-          <Link href= "/blog?cat=pahalgam" className={`${styles.category} ${styles.pahalgam}`}>
-              <Image src= "/gulmarg.avif" alt='category-logo' width={32} height={32} className= {styles.image} /> Pahalgam
+          <Link href= "/blog?cat=old-city" className={`${styles.category} ${styles.oldCity}`}>
+              Old city
           </Link>
-          <Link href= "/blog?cat=aharbal" className={`${styles.category} ${styles.aharbal}`}>
-              <Image src= "/gulmarg.avif" alt='category-logo' width={32} height={32} className= {styles.image} /> Aharbal
+          <Link href= "/blog?cat=mughal-gardens" className={`${styles.category} ${styles.mughalGardens}`}>
+              Mughal gardens
+          </Link>
+          <Link href= "/blog?cat=glaciers" className={`${styles.category} ${styles.glaciers}`}>
+              Glaciers
+          </Link>
+          <Link href= "/blog?cat=alpine-meadows" className={`${styles.category} ${styles.meadows}`}>
+              Alpine Meadows
+          </Link>
+
+          <Link href= "/blog?cat=dal-lake" className={`${styles.category} ${styles.dal}`}>
+              Dal lake
           </Link>
       </div>
     </div>

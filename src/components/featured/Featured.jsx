@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./featured.module.css"
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Featured = () => {
   return (
@@ -11,9 +12,9 @@ const Featured = () => {
           <Image src= "/gulmarg.avif" alt='post image' fill className= {styles.postImg}/>
         </div>
         <div className= {styles.textContainer}>
-          <h1 className= {styles.postTitle}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt.</h1>
-          <p className= {styles.postDescription}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, praesentium veritatis! Illum molestiae reiciendis autem fugiat, inventore veritatis animi aperiam modi, provident impedit cumque aliquam quo enim ipsum minus sit!</p>
-          <button className= {styles.postBtn}>Read More</button>
+          <h1 className= {styles.postTitle}>Kashmir : Where Beauty Knows No Bounds</h1>
+          <p className= {styles.postDescription}>Nestled amidst majestic snow-capped peaks and serene valleys, Kashmir beckons travelers with its unparalleled beauty and rich cultural heritage. With captivating stories, Explore Kashmir is your trusted companion in crafting unforgettable memories in this paradise on earth. Join us as we delve into the heart of Kashmir, where every corner holds a new adventure waiting to be discovered.</p>
+          <Link href= "#posts" className= {styles.exploreBtn}>Explore Now</Link>
         </div>
       </div>
     </div>

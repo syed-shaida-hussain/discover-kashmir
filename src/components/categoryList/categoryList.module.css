@@ -18,18 +18,33 @@
     border-radius: 10px;
     width: 15%;
     height: 60px;
+    padding: 5px;
+    font-weight: bold;
+    color: var(--bg);
 }
 
-.category.gulmarg{
-    background-color: #57c4ff31;
+.category.winter{
+    background-color: #64748b;
 }
 
-.category.pahalgam{
-    background-color: #57c4cc31;
+.category.oldCity{
+    background-color: #6b7280;
 }
 
-.category.aharbal{
-    background-color: #57c4aa31;
+.category.mughalGardens{
+    background-color: #fde047;
+}
+
+.category.meadows{
+    background-color: #4ade80;
+}
+
+.category.glaciers{
+    background-color: #60a5fa;
+}
+
+.category.dal{
+    background-color: #818cf8;
 }
 
 .image{

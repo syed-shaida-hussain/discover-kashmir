@@ -6,11 +6,11 @@ import Pagination from '../pagination/Pagination';
 import { Card } from '../card/Card';
 import axios from "axios";
 
-const CardList = () => {
+const CardList = ({cat}) => {
   const [posts, setPosts] = useState([]);
   const getPosts = async () => {
     try {
-      const res = await axios.get("/api/posts");
+      const res = await axios.get(`/api/posts?cat=${cat || ""}`);
       setPosts(res?.data?.posts)
     } catch (error) {
       console.log(error)
@@ -20,7 +20,7 @@ const CardList = () => {
     getPosts();
   },[])
   return (
-    <div className= {styles.container}>
+    <div className= {styles.container} id='posts'>
       <h1 className= {styles.title}>Recent Posts</h1>
       <div className= {styles.posts}>
         {

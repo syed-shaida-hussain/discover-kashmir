@@ -15,7 +15,7 @@
 }
 
 .imgContainer{
-    flex: 1.5;
+    flex: 1.2;
     height: 400px;
     position: relative;
 }
@@ -34,11 +34,14 @@
 .postDescription{
     font-weight: 300;
     color: var(--light-text-color);
+    line-height: 24px;
 }
 
-.postBtn{
-    border: none;
-    padding: 16px 20px;
+.exploreBtn{
+    background-color: var(--text-color);
+    color: var(--bg);
+    font-weight: bold;
+    padding: 10px 12px;
     border-radius: 5px;
     width: max-content;
 }
@@ -71,6 +74,10 @@
 
     .imgContainer{
         height: 300px;
+    }
+
+    .exploreBtn{
+        margin: auto;
     }
 }
 
