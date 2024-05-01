@@ -38,12 +38,14 @@
 }
 
 .exploreBtn{
-    background-color: var(--text-color);
+    background-color: var(--cta-btn-color);
     color: var(--bg);
+    width: 200px;
     font-weight: bold;
-    padding: 10px 12px;
+    padding: 12px 20px;
     border-radius: 5px;
-    width: max-content;
+    margin: auto;
+    text-align: center;
 }
 
 @media only screen and (max-width : 1280px ) {

@@ -19,8 +19,8 @@ const CategoryList = () => {
           <Link href= "/blog?cat=glaciers" className={`${styles.category} ${styles.glaciers}`}>
               Glaciers
           </Link>
-          <Link href= "/blog?cat=alpine-meadows" className={`${styles.category} ${styles.meadows}`}>
-              Alpine Meadows
+          <Link href= "/blog?cat=meadows" className={`${styles.category} ${styles.meadows}`}>
+              Meadows
           </Link>
 
           <Link href= "/blog?cat=dal-lake" className={`${styles.category} ${styles.dal}`}>

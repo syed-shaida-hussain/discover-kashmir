@@ -1,24 +1,23 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
 import styles from "./cardList.module.css"
 import Pagination from '../pagination/Pagination';
 import { Card } from '../card/Card';
-import axios from "axios";
 
-const CardList = ({cat}) => {
-  const [posts, setPosts] = useState([]);
-  const getPosts = async () => {
-    try {
-      const res = await axios.get(`/api/posts?cat=${cat || ""}`);
-      setPosts(res?.data?.posts)
-    } catch (error) {
-      console.log(error)
-    }
+async function getData (cat) {
+  try {
+    const res = await fetch(`http://localhost:3000/api/posts?cat=${cat || ""}` , {
+      next : {
+        revalidate : 0,
+        tags : ['posts']
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error.message)
   }
-  useEffect(() => {
-    getPosts();
-  },[])
+}
+
+const CardList = async  ({cat}) => {
+  const {posts} = await getData(cat)
   return (
     <div className= {styles.container} id='posts'>
       <h1 className= {styles.title}>Recent Posts</h1>

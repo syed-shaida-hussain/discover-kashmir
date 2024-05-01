@@ -6,11 +6,12 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import Image from 'next/image';
+import action from '../actions';
 
 const options = [
   {name : "Reset", value : ""},
   {name : "Dal Lake", value : "dal-lake"},
-  {name : "Alpine Meadows", value : "alpine-meadows"},
+  {name : "Meadows", value : "meadows"},
   {name : "Winter Wonders", value : "winter-wonders"},
   {name : "Old City", value : "old-city"},
   {name : "Glaciers", value : "glaciers"},
@@ -22,6 +23,7 @@ const options = [
   const [postData , setPostData] = useState({
     title : "",
     file : "",
+    video : "",
     category : ""
   })
 
@@ -31,10 +33,12 @@ const options = [
       const data = new FormData();
       data.set("file" , postData.file);
       data.set("title" , postData.title);
+      data.set("video" , postData.video);
       data.set("value" , value);
       data.set("category" , postData?.category)
       const res = await axios.post("/api/upload", data);
-      setPostData({...postData , title : "", file : "",  category : ""});
+      action();
+      setPostData({...postData , title : "", file : "",  category : "" , video : ""});
       setValue("");
     } catch (error) {
       console.log(error)
@@ -55,6 +59,7 @@ const options = [
               </label>
               <ReactQuill className= {styles.textArea} theme='bubble' value={value} onChange={setValue} placeholder='Tell your story...' />
             </div>
+            <input type='text' placeholder='Enter youtube video URL (optional)...' value={postData.video} className= {`${styles.input} ${styles.videoInput}`} onChange={(e) => setPostData({...postData , video : e.target.value})} />
             <div className= {styles.dropdown}>
                 <button>{postData?.category ? "category : " + postData?.category : "Select a category" } </button>
                 {options.map((option , i) => <div key={i} className= {styles.options} onClick={() => setPostData({...postData , category : option.value })}>

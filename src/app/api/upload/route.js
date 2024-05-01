@@ -35,6 +35,7 @@ export async function POST (request) {
         const file = data.get('file');
         const title = data.get('title');
         const value = data.get('value');
+        const video = data.get('video');
         const category = data.get('category');
         const imageData = await file.arrayBuffer();
         const buffer = Buffer.from(imageData);
@@ -50,8 +51,10 @@ export async function POST (request) {
             value,
             image : path,
             category,
+            video,
             authorName : user?.username,
-            authorId : user?._id
+            authorId : user?._id,
+            carousel : false
         })
         return NextResponse.json({
             post : postDoc,

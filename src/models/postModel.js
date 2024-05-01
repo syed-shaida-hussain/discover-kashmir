@@ -15,6 +15,9 @@ const postSchema = new mongoose.Schema({
         type : String,
         required : [true , "image is required"],
     },
+    video : {
+        type : String,
+    },
     category : {
         type : String,
         required : [true , "category is required"]
@@ -27,6 +30,9 @@ const postSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         required : true,
         ref : 'User'
+    },
+    carousel : {
+        type : Boolean,
     },
     comments : {
         type : String,

@@ -20,7 +20,7 @@
     height: 60px;
     padding: 5px;
     font-weight: bold;
-    color: var(--bg);
+    color: white;
 }
 
 .category.winter{
@@ -32,7 +32,7 @@
 }
 
 .category.mughalGardens{
-    background-color: #fde047;
+    background-color: #16a34a;
 }
 
 .category.meadows{
