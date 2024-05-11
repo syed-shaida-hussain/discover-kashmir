@@ -22,3 +22,22 @@ export async function GET ( request , {params} ) {
     })
     }
 }
+
+export async function DELETE (request , {params}) {
+    try {
+        const {id} = params;
+        const deletedPost = await Post.findByIdAndDelete({_id : id})
+        return NextResponse.json({
+            message : "Post deleted successfully",
+            success : true,
+            status : 200,
+            deletedPost
+        },{status : 200})
+    } catch (error) {
+        return NextResponse.json({
+            message: "could'nt delete post",
+            error : error.message,
+            status : 500,
+    })
+    }
+}

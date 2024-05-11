@@ -1,0 +1,11 @@
+.iconContainer{
+    text-align: right;
+    margin: 20px 0;
+}
+
+.icon{
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+}

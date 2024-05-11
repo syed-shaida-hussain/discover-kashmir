@@ -1,8 +1,7 @@
 import { cookies } from 'next/headers';
 import styles from './singlePage.module.css'
 import Image from 'next/image'
-import { MdDelete } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
+import { EventIcons } from '@/components/eventIcons/EventIcons';
 // import Comments from '@/components/comments/Comments'
 
 async function getPost (id) {
@@ -31,12 +30,7 @@ const SingleBlogPage = async ({params}) => {
     const {user} = await getUser();
   return (
     <div className= {styles.container}>
-        {user._id === post?.authorId && <div className= {styles.iconContainer}>
-            <FaEdit className= {styles.icon} />
-            <MdDelete className= {styles.icon} />
-        </div>}
-        
-
+        <EventIcons user={user} post={post} />
         <div className= {styles.infoContainer}>
             <div className= {styles.textContainer}>
                 <h1 className= {styles.title}>{post?.title}</h1>
@@ -54,10 +48,10 @@ const SingleBlogPage = async ({params}) => {
         <div className= {styles.content}>
             <div className= {styles.post}>
                 <div className= {styles.description} dangerouslySetInnerHTML={{__html: post?.value}}  />
-                    <div>
-                        <iframe className= {styles.video} src = {`https://www.youtube.com/embed/${post?.video.split('=')[1].split('&')[0]}?autoplay=0&showinfo=0`}
+                    {post?.video && <div>
+                        <iframe className= {styles.video} src = {`https://www.youtube.com/embed/${post?.video?.split('=')[1].split('&')[0]}?autoplay=0&showinfo=0`}
                             allowFullScreen />
-                    </div>
+                    </div>}
                 {/* <div className= {styles.comments}>
                     <Comments />
                 </div> */}
