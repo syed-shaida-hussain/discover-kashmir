@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from "./featured.module.css"
 import Carousel from '../carousel/Carousel';
 
@@ -8,7 +7,7 @@ const Featured = () => {
       <h1 className= {styles.title}>Embrace the Magic of Kashmir : A Symphony of Nature and Culture.</h1>
       <div className= {styles.post}>
         <div className= {styles.textContainer}>
-          <Carousel />
+            <Carousel />
         </div>
       </div>
     </div>

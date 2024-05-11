@@ -3,6 +3,8 @@ import styles from "./homepage.module.css"
 import CategoryList from "@/components/categoryList/CategoryList";
 import CardList from "@/components/cardList/CardList";
 import Menu from "@/components/menu/Menu";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default function Home() {
   return (
@@ -10,7 +12,9 @@ export default function Home() {
       <Featured />
       <CategoryList />
       <div className={styles.content}>
+      <Suspense fallback = {<Loading />}>
         <CardList />
+      </Suspense>
         <Menu />
       </div>
     </div>

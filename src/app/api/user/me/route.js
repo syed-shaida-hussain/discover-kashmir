@@ -13,12 +13,11 @@ export async function GET(request){
             message : "user found",
             status : 200,
             user
-        })
+        },{status : 200})
         
     } catch (error) {
         return NextResponse.json({
-            error : error.message,
-            status : 400
-        })
+            error : error.message
+        },{status : 400})
     }
 }

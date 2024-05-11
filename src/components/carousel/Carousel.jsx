@@ -1,6 +1,5 @@
 "use client";
 
-// import { slides } from "@/data/carouselData"
 import styles from "./carousel.module.css"
 import Image from "next/image"
 import {BsArrowLeftCircleFill , BsArrowRightCircleFill} from "react-icons/bs"
