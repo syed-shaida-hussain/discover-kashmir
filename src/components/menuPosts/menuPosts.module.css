@@ -49,8 +49,8 @@
     font-size: 12px ;
 }
 
-.date{
-    color: gray;
+.username{
+    font-weight: bold;
 }
 
 @media only screen and (max-width : 1280px) {

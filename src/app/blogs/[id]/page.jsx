@@ -5,7 +5,7 @@ import { EventIcons } from '@/components/eventIcons/EventIcons';
 
 async function getPost (id) {
     try {
-        const res = await fetch(`http://localhost:3000/api/posts/${id}`)
+        const res = await fetch(`${process.env.DOMAIN}/api/posts/${id}`)
         return res.json();
     } catch (error) {
         console.log(error.message)
@@ -14,7 +14,7 @@ async function getPost (id) {
 
 async function getUser () {
     try {
-        const res = await fetch('http://localhost:3000/api/user/me',{
+        const res = await fetch(`${process.env.DOMAIN}/api/user/me`,{
             headers: { Cookie: cookies().toString() },
           })
         return res.json();

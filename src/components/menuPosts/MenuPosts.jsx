@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from "./menuPosts.module.css"
 import Link from 'next/link';
-import axios from "axios";
 
 async function fetchTrendingPosts () {
   try {
-      const res = await fetch(`http://localhost:3000/api/carousel`)
+      const res = await fetch(`${process.env.DOMAIN}/api/carousel`)
       return res.json();
   } catch (error) {
       console.log(error.message)
@@ -21,8 +20,7 @@ const MenuPosts = async () => {
             <span className= {`${styles.category}`}>{post.category}</span>
             <h3 className= {styles.postTitle}>{post?.title}</h3>
             <div className= {styles.detail}>
-              <span className= {styles.username}>{post?.authorName} </span>
-              <span className= {styles.date}> 17.02.2024</span>
+              <span className= {styles.username}>Author : @{post?.authorName} </span>
             </div>
         </div>
     </Link> )}

@@ -8,7 +8,6 @@ import { getUserDataFromToken } from "@/helpers/getUserData";
 connect();
 
 const handleErrors = (error) => {
-    console.log(error.message)
     let errors = {title : '' , postValue : '' , image : '' , category : ''};
 
     if(error.message === "title is required") {
