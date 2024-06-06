@@ -2,7 +2,6 @@ import { cookies } from 'next/headers';
 import styles from './singlePage.module.css'
 import Image from 'next/image'
 import { EventIcons } from '@/components/eventIcons/EventIcons';
-// import Comments from '@/components/comments/Comments'
 
 async function getPost (id) {
     try {

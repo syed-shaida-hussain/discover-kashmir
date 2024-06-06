@@ -21,7 +21,7 @@ export const EventIcons = ({user , post}) => {
 
     }
   return (
-    user._id === post?.authorId && <div className= {styles.iconContainer}>
+    user?._id === post?.authorId && <div className= {styles.iconContainer}>
 
             <Link href={`/edit/${post._id}`}><FaEdit className= {styles.icon}  /></Link>
             <MdDelete className= {styles.icon} onClick={deletePost} />

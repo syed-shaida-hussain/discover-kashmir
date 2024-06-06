@@ -4,7 +4,9 @@ import styles from "./addPostForm.module.css"
 import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.bubble.css';
 import { useState } from "react"
-import action from "@/app/actions"
+import action from "@/app/actions";
+import axios from "axios"
+import { useRouter } from "next/navigation";
 
 const options = [
     {name : "Reset", value : ""},
@@ -18,7 +20,8 @@ const options = [
   
   ]
 
-const AddPostForm = ({post}) => {
+const AddPostForm = ({post , isEditForm}) => {
+  const router = useRouter();
     const [value , setValue] = useState("");
     const [postData , setPostData] = useState({
       title : "",
@@ -44,11 +47,30 @@ const AddPostForm = ({post}) => {
         console.log(error)
       }
     }
+
+    const handleEditPost = async (e) => {
+        e.preventDefault();
+        try {
+          const data = new FormData();
+          data.set("file" , postData.file ? postData.file : post?.image);
+          data.set("title" , postData.title ? postData.title : post?.title);
+          data.set("video" , postData.video ? postData.video : post?.video);
+          data.set("value" , value ? value : post?.value);
+          data.set("category" , postData?.category ? postData.category : post?.category)
+          const res = await axios.put(`/api/edit/${post._id}`, data);
+          action();
+          router.push(`/blogs/${post._id}`)
+          setPostData({...postData , title : "", file : "",  category : "" , video : ""});
+          setValue("");
+        } catch (error) {
+          console.log(error)
+        }
+      }
   return (
-    <form className= {styles.container} onSubmit={handleAddPost}>
+    <form className= {styles.container} onSubmit={isEditForm ? handleEditPost : handleAddPost}>
     <div className= {styles.flex}>
-        <input type='text' placeholder='Title...' defaultValue={post?.title}  className= {styles.input} onChange={(e) => setPostData({...postData , title : e.target.value})} />
-        <button type='submit' className= {styles.publish}>Publish</button>
+        <input type='text' placeholder='Title...' defaultValue={post?.title} className= {styles.input} onChange={(e) => setPostData({...postData , title : e.target.value})} />
+        {isEditForm ? <button type='submit' className= {styles.publish}>Edit</button> : <button type='submit' className= {styles.publish}>Publish</button>}
     </div>
     <div className= {styles.editor}>
         <div className= {styles.inputs}>
@@ -56,9 +78,9 @@ const AddPostForm = ({post}) => {
           <label htmlFor='image' className= {styles.label}>
             <Image src= "/add-img.svg" alt='add image icon' width={25} height={25} />
           </label>
-          <ReactQuill className= {styles.textArea} theme='bubble' value={ post?.value ?? value} onChange={setValue} placeholder='Tell your story...' />
+          <ReactQuill className= {styles.textArea} theme='bubble' defaultValue={post?.value} onChange={setValue} placeholder='Tell your story...' />
         </div>
-        <input type='text' placeholder='Enter youtube video URL (optional)...' value={post?.video ?? postData.video} className= {`${styles.input} ${styles.videoInput}`} onChange={(e) => setPostData({...postData , video : e.target.value})} />
+        <input type='text' placeholder='Enter youtube video URL (optional)...' defaultValue={post?.video} className= {`${styles.input} ${styles.videoInput}`} onChange={(e) => setPostData({...postData , video : e.target.value})} />
         <div className= {styles.dropdown}>
             <button>{postData?.category ? "category : " + postData?.category : "Select a category" } </button>
             {options.map((option , i) => <div key={i} className= {styles.options} onClick={() => setPostData({...postData , category : option.value })}>

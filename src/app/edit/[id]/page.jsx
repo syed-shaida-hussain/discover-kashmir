@@ -15,7 +15,7 @@ const EditPage = async ({params}) => {
     const {post} = await getPost(id)
   return (
     <div>
-        <AddPostForm post = {post} />
+        <AddPostForm post = {post} isEditForm={true} />
     </div>
   )
 }

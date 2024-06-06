@@ -31,26 +31,12 @@
 }
 
 .category{
-    padding: 3px 8px;
+    padding: 3px 12px;
     border-radius: 10px;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
     width: max-content;
-}
-
-.category.gulmarg{
     background-color: #57c4ff31;
-}
-
-.category.aharbal{
-    background-color: #da85c731;
-}
-
-.category.pahalgam{
-    background-color: #7fb88133;
-}
-
-.category.yusmarg{
-    background-color: #ffb04f45;
 }
 
 .postTitle{

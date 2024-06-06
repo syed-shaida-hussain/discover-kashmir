@@ -18,8 +18,7 @@ export async function GET ( request , {params} ) {
         return NextResponse.json({
             message: "could'nt get single post",
             error : error.message,
-            status : 500,
-    })
+    },{status : 500})
     }
 }
 
@@ -30,14 +29,11 @@ export async function DELETE (request , {params}) {
         return NextResponse.json({
             message : "Post deleted successfully",
             success : true,
-            status : 200,
             deletedPost
         },{status : 200})
     } catch (error) {
         return NextResponse.json({
             message: "could'nt delete post",
-            error : error.message,
-            status : 500,
-    })
+    },{status : 500})
     }
 }
