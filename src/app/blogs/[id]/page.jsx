@@ -3,6 +3,10 @@ import styles from './singlePage.module.css'
 import Image from 'next/image'
 import { EventIcons } from '@/components/eventIcons/EventIcons';
 
+export const metadata = {
+    title: "Blog page | Discover Kashmir",
+  };
+
 async function getPost (id) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/posts/${id}`)

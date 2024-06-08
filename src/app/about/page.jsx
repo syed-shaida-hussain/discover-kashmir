@@ -1,5 +1,9 @@
 import styles from "./aboutPage.module.css"
 
+export const metadata = {
+  title: "About | Discover Kashmir",
+};
+
 const AboutPage = () => {
   return (
     <>

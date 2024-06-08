@@ -5,6 +5,10 @@ const AddPostForm = dynamic(() => import("@/components/addPostForm/AddPostForm")
   });
 import React from 'react'
 
+export const metadata = {
+  title: "Edit | Discover Kashmir",
+};
+
 async function getPost (id) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/posts/${id}`)

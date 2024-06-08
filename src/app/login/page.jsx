@@ -8,6 +8,10 @@ import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../GlobalRedux/features/user/userSlice';
 
+export const metadata = {
+  title: "Login | Discover Kashmir",
+};
+
 const LoginPage = () => {
   const [user , setUser] = useState({username: "" , password : ""});
   const [error , setError] = useState({usernameError : "" , passwordError : ""});
