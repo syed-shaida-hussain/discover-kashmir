@@ -6,10 +6,6 @@ import { useState } from 'react'
 import axios from "axios"
 import { useRouter } from 'next/navigation';
 
-export const metadata = {
-  title: "Signup | Discover Kashmir",
-};
-
 const SignupPage = () => {
   const [user , setUser] = useState({username: "" , password : ""});
   const [error , setError] = useState({usernameError : "" , passwordError : ""});
