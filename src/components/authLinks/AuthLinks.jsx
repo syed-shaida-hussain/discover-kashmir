@@ -7,6 +7,8 @@ import axios from "axios"
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '@/app/GlobalRedux/features/user/userSlice';
+const isServer = typeof window === "undefined";
+
 
 const AuthLinks = () => {
   const [open , setOpen] = useState(false);
@@ -18,7 +20,9 @@ const AuthLinks = () => {
     try {
       const res = await axios.get("/api/user/logout")
       router.push('/login')
-      localStorage.removeItem("token");
+      if(!isServer) {
+        localStorage.removeItem("token")
+      }
       dispatch(logoutUser())
     } catch (error) {
       console.log(error)

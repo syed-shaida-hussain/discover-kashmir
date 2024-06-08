@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./themeToggle.module.css"
 import Image from 'next/image'
 import styles from "./themeToggle.module.css"
@@ -9,11 +9,16 @@ import { toggleTheme } from '@/app/GlobalRedux/features/theme/ThemeSlice';
 
 const ThemeToggle = () => {
   const dispatch = useDispatch();
+  const [domLoaded, setDomLoaded] = useState(false);
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
   const {theme} = useSelector((store) => store.theme)
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
   }
-  return (
+  return ( domLoaded &&
     <div className={styles.container} onClick={handleToggleTheme} style={theme === "light" ? {
       background : "black"
     } : {
