@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Discover Kashmir",
-  description: "A blog app made with next js",
+  description: "A blog app made with next js to showcase kashmir's beautiful places to the whole world",
 };
 
 export default function RootLayout({ children }) {

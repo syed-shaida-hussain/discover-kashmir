@@ -18,7 +18,7 @@ const MenuPosts = async () => {
   const {carouselPosts} = await fetchTrendingPosts();
   return (
     <div className= {styles.items}>
-      {carouselPosts.map((post) =><Link key={post._id} href= {`/blogs/${post._id}`} className= {styles.item}>
+      {carouselPosts?.map((post) =><Link key={post._id} href= {`/blogs/${post._id}`} className= {styles.item}>
         <div className= {styles.textContainer}>
             <span className= {`${styles.category}`}>{post.category}</span>
             <h3 className= {styles.postTitle}>{post?.title}</h3>

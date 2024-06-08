@@ -13,7 +13,7 @@
 
 @media only screen and (max-width : 640px) {
     .burger{
-        display: inline;
+        display: block;
     }
 
     .link {
@@ -32,6 +32,6 @@
         justify-content: center;
         align-items: center;
         gap: 50px;
-        z-index: 999;
+        z-index: 9999;
     }
 }

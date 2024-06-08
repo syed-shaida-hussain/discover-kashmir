@@ -7,6 +7,8 @@ import axios from "axios"
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '@/app/GlobalRedux/features/user/userSlice';
+import { MdMenu } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 const isServer = typeof window === "undefined";
 
 
@@ -19,6 +21,7 @@ const AuthLinks = () => {
   const logout = async () => {
     try {
       const res = await axios.get("/api/user/logout")
+      setOpen(false)
       router.push('/login')
       if(!isServer) {
         localStorage.removeItem("token")
@@ -27,6 +30,10 @@ const AuthLinks = () => {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const closeModal = () => {
+    setOpen(false)
   }
 
   return (
@@ -38,18 +45,17 @@ const AuthLinks = () => {
         </>
       }
       <div className= {styles.burger}>
-      {!open ? <span className={`material-symbols-outlined ${styles.burger}`} onClick={() => setOpen(true)} >menu</span> : <span className={`material-symbols-outlined ${styles.burger}`} onClick={() => setOpen(false)}>close</span>}
+      {!open ? <MdMenu className= {styles.burger} onClick={() => setOpen(true)} />  : <IoClose className= {styles.burger} onClick={() => setOpen(false)} />}
       </div>
       {
         open && (
           <div className= {styles.responsiveMenu}>
-            <Link href="/">Homepage</Link>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/" onClick={closeModal}>Homepage</Link>
+            <Link href="/about" onClick={closeModal}>About</Link>
           {
-          !isUserLoggedIn ? <Link href= "/login">Login</Link> : <>
-          <Link href="/write">Create</Link>
-          <span className= {styles.link} onClick={() =>logout()}>Logout</span>
+          !isUserLoggedIn ? <Link href= "/login" onClick={closeModal}>Login</Link> : <>
+          <Link href="/write" onClick={closeModal}>Create</Link>
+          <span onClick={() =>logout()}>Logout</span>
           </>
           }
           </div>
