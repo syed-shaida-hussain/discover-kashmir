@@ -4,7 +4,7 @@ import { Card } from '../card/Card';
 
 async function getData (cat) {
   try {
-    const res = await fetch(`${process.env.DOMAIN}/api/posts?cat=${cat || ""}` , {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/posts?cat=${cat || ""}` , {
       next : {
         revalidate : 0,
         tags : ['posts']
@@ -17,6 +17,9 @@ async function getData (cat) {
 }
 
 const CardList = async  ({cat}) => {
+  if(!process.env.NEXT_PUBLIC_DOMAIN) {
+    return null;
+}
   const {posts} = await getData(cat)
   return (
     <div className= {styles.container} id='posts'>

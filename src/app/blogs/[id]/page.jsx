@@ -5,7 +5,7 @@ import { EventIcons } from '@/components/eventIcons/EventIcons';
 
 async function getPost (id) {
     try {
-        const res = await fetch(`${process.env.DOMAIN}/api/posts/${id}`)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/posts/${id}`)
         return res.json();
     } catch (error) {
         console.log(error.message)
@@ -14,7 +14,7 @@ async function getPost (id) {
 
 async function getUser () {
     try {
-        const res = await fetch(`${process.env.DOMAIN}/api/user/me`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/user/me`,{
             headers: { Cookie: cookies().toString() },
           })
         return res.json();
@@ -24,6 +24,9 @@ async function getUser () {
 }
 
 const SingleBlogPage = async ({params}) => {
+    if(!process.env.NEXT_PUBLIC_DOMAIN) {
+        return null;
+    }
     const {id} = params
     const {post} = await getPost(id)
     const {user} = await getUser();

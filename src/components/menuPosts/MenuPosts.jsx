@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 async function fetchTrendingPosts () {
   try {
-      const res = await fetch(`${process.env.DOMAIN}/api/carousel`)
+      const res = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/carousel`)
       return res.json();
   } catch (error) {
       console.log(error.message)
@@ -12,6 +12,9 @@ async function fetchTrendingPosts () {
 }
 
 const MenuPosts = async () => {
+  if(!process.env.NEXT_PUBLIC_DOMAIN) {
+    return null;
+}
   const {carouselPosts} = await fetchTrendingPosts();
   return (
     <div className= {styles.items}>
