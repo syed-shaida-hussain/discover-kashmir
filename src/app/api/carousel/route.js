@@ -1,5 +1,8 @@
+import { connect } from "@/dbConfig/dbConfig";
 import Post from "@/models/postModel";
 import { NextResponse } from "next/server";
+
+connect();
 
 export async function GET () {
     try {
