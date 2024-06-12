@@ -29,7 +29,7 @@ const CardList = async  ({cat}) => {
           posts?.map((post) => <Card key={post?._id} post={post} />)
         }
       </div>
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   )
 }
