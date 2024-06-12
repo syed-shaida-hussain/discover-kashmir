@@ -14,6 +14,14 @@ const handleErrors = (error) => {
         errors.title = "Please enter Title"
     }
 
+    if(error.message === "short title") {
+        errors.title = "Title length should be greater than 10 characters"
+    }
+
+    if(error.message === "short value") {
+        errors.postValue = "Value length should be greater than 10 characters"
+    }
+
     if(error.message === "postValue is required") {
         errors.postValue = "Please enter post value"
     }
@@ -23,7 +31,7 @@ const handleErrors = (error) => {
     }
 
     if(error.message === "category is required") {
-        errors.image = "Please select a category"
+        errors.category = "Please select a category"
     }
     return errors
 }
@@ -36,6 +44,24 @@ export async function POST (request) {
         const value = data.get('value');
         const video = data.get('video');
         const category = data.get('category');
+        if(!title) {
+            throw Error("title is required")
+        }
+        if(!file) {
+            throw Error("image is required")
+        }
+        if(!value) {
+            throw Error("postValue is required")
+        }
+        if(!category) {
+            throw Error("category is required")
+        }
+        if(title.length < 10) {
+            throw Error("short title")
+        }
+        if(value.length < 10) {
+            throw Error("short value")
+        }
         const imageData = await file.arrayBuffer();
         const buffer = Buffer.from(imageData);
         const path = `./public/${file.name}`;
@@ -58,6 +84,7 @@ export async function POST (request) {
         return NextResponse.json({
             post : postDoc,
             message : "Post added successfully",
+            status : 201
         },{status : 201})
     } catch (error) {
         const errors = handleErrors(error);
@@ -65,6 +92,6 @@ export async function POST (request) {
                 message: "Problem in adding a post",
                 errors,
                 status : 500,
-        })
+        },{status : 500})
     }
 }

@@ -7,18 +7,7 @@ import { useState } from "react"
 import action from "@/app/actions";
 import axios from "axios"
 import { useRouter } from "next/navigation";
-
-const options = [
-    {name : "Reset", value : ""},
-    {name : "Dal Lake", value : "dal-lake"},
-    {name : "Meadows", value : "meadows"},
-    {name : "Winter Wonders", value : "winter-wonders"},
-    {name : "Old City", value : "old-city"},
-    {name : "Glaciers", value : "glaciers"},
-    {name : "Mughal Gardens", value : "mughal-gardens"},
-    {name : "Hill stations", value : "hill-stations"}
-  
-  ]
+import { categories } from "@/constants/categories";
 
 const AddPostForm = ({post , isEditForm}) => {
   const router = useRouter();
@@ -29,6 +18,7 @@ const AddPostForm = ({post , isEditForm}) => {
       video : "",
       category : ""
     })
+    const [error , setError] = useState({imageError : "" , titleError : "" , valueError : "" , categoryError : "" });
   
     const handleAddPost = async (e) => {
       e.preventDefault();
@@ -40,11 +30,14 @@ const AddPostForm = ({post , isEditForm}) => {
         data.set("value" , value);
         data.set("category" , postData?.category)
         const res = await axios.post("/api/upload", data);
-        action();
         setPostData({...postData , title : "", file : "",  category : "" , video : ""});
         setValue("");
-      } catch (error) {
-        console.log(error)
+        action();
+        router.push('/')
+      } catch (err) {
+        const {response} = err
+        const {data} = response
+        setError({...error , imageError : data?.errors?.image , titleError : data?.errors?.title , valueError : data?.errors?.postValue, categoryError : data?.errors?.category})
       }
     }
 
@@ -69,24 +62,38 @@ const AddPostForm = ({post , isEditForm}) => {
   return (
     <form className= {styles.container} onSubmit={isEditForm ? handleEditPost : handleAddPost}>
     <div className= {styles.flex}>
+      <div>
         <input type='text' placeholder='Title...' defaultValue={post?.title} className= {styles.input} onChange={(e) => setPostData({...postData , title : e.target.value})} />
+        <div className= {styles.error}>{error?.titleError}</div>
+      </div>
+        
         {isEditForm ? <button type='submit' className= {styles.publish}>Edit</button> : <button type='submit' className= {styles.publish}>Publish</button>}
     </div>
     <div className= {styles.editor}>
         <div className= {styles.inputs}>
           <input type='file' id='image' className= {styles.file} onChange={(e) => setPostData({...postData , file : e.target.files?.[0]})} />
+          <div>
           <label htmlFor='image' className= {styles.label}>
             <Image src= "/add-img.svg" alt='add image icon' width={25} height={25} />
           </label>
-          <ReactQuill className= {styles.textArea} theme='bubble' defaultValue={post?.value} onChange={setValue} placeholder='Tell your story...' />
+          {error?.imageError && <div className= {styles.error}>{error?.imageError}</div>}
+          </div>
+
+          <div className= {styles.textAreaContainer}>
+            <ReactQuill className= {styles.textArea} theme='bubble' defaultValue={post?.value} onChange={setValue} placeholder='Tell your story...' />
+            <div className= {styles.error}>{error?.valueError}</div>
+          </div>
+          
         </div>
         <input type='text' placeholder='Enter youtube video URL (optional)...' defaultValue={post?.video} className= {`${styles.input} ${styles.videoInput}`} onChange={(e) => setPostData({...postData , video : e.target.value})} />
         <div className= {styles.dropdown}>
             <button>{postData?.category ? "category : " + postData?.category : "Select a category" } </button>
-            {options.map((option , i) => <div key={i} className= {styles.options} onClick={() => setPostData({...postData , category : option.value })}>
+            {categories.map((option , i) => <div key={i} className= {styles.options} onClick={() => setPostData({...postData , category : option.value })}>
               {option.name}
             </div>)}
         </div>
+        <div className= {styles.error}>{error?.categoryError}</div>
+
     </div>
 </form>
   )
