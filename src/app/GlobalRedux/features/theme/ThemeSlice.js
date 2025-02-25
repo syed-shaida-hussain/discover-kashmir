@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-const isServer = typeof window === "undefined";
+const isServer = typeof window === "undefined" && window.localStorage
 
 const initialState = {
     theme : !isServer && (localStorage.getItem("theme") ?? "light")
 }
-if(isServer) {
-    initialState.theme = localStorage.getItem("theme") ?? "light"
+if(!isServer) {
 }
 
 const themeSlice = createSlice({
