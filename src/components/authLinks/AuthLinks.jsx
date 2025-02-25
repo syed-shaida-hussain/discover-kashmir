@@ -39,11 +39,13 @@ const AuthLinks = () => {
   return (
     <>
       {
-        !isUserLoggedIn  ? <Link href= "/login" className= {styles.link}>Login</Link> : <>
+        !isUserLoggedIn  && <Link href= "/login" className= {styles.link}>Login</Link> 
+      }
+         <>
           <Link className= {styles.link} href="/write">Create</Link>
           <span className= {styles.link} onClick={() =>logout()}>Logout</span>
         </>
-      }
+      
       <div className= {styles.burger}>
       {!open ? <MdMenu className= {styles.burger} onClick={() => setOpen(true)} />  : <IoClose className= {styles.burger} onClick={() => setOpen(false)} />}
       </div>
