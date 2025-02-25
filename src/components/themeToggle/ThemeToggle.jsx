@@ -9,16 +9,20 @@ import { toggleTheme } from '@/app/GlobalRedux/features/theme/ThemeSlice';
 
 const ThemeToggle = () => {
   const dispatch = useDispatch();
-  const [domLoaded, setDomLoaded] = useState(false);
+  const {theme} = useSelector((state) => state.theme);
 
   useEffect(() => {
-    setDomLoaded(true);
-  }, []);
-  const {theme} = useSelector((store) => store.theme)
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      dispatch({ type: "theme/setTheme", payload: savedTheme });
+    }
+  }, [dispatch]);
+
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
-  }
-  return ( domLoaded &&
+  };
+
+  return (
     <div className={styles.container} onClick={handleToggleTheme} style={theme === "light" ? {
       background : "black"
     } : {
