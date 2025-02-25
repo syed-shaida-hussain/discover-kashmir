@@ -4,7 +4,8 @@ const isServer = typeof window === "undefined";
 const initialState = {
     theme : !isServer && (localStorage.getItem("theme") ?? "light")
 }
-if(!isServer) {
+if(isServer) {
+    initialState.theme = localStorage.getItem("theme") ?? "light"
 }
 
 const themeSlice = createSlice({
