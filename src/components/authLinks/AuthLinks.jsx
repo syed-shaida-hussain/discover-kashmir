@@ -43,7 +43,7 @@ const AuthLinks = () => {
       }
          <>
           <Link className= {styles.link} href="/write">Create</Link>
-          <span className= {styles.link} onClick={() =>logout()}>Logout</span>
+          {isUserLoggedIn && <span className= {styles.link} onClick={() =>logout()}>Logout</span>}
         </>
       
       <div className= {styles.burger}>
@@ -54,12 +54,12 @@ const AuthLinks = () => {
           <div className= {styles.responsiveMenu}>
             <Link href="/" onClick={closeModal}>Homepage</Link>
             <Link href="/about" onClick={closeModal}>About</Link>
-          {
-          !isUserLoggedIn ? <Link href= "/login" onClick={closeModal}>Login</Link> : <>
+          {!isUserLoggedIn && <Link href= "/login" onClick={closeModal}>Login</Link> } 
+          <>
           <Link href="/write" onClick={closeModal}>Create</Link>
-          <span onClick={() =>logout()}>Logout</span>
+          {isUserLoggedIn && <span onClick={() =>logout()}>Logout</span>}
           </>
-          }
+
           </div>
         )
       }
