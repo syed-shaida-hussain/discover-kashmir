@@ -61,8 +61,18 @@ export async function POST (request) {
             user,
             token
         })
-        response.cookies.set("token" , token)
-        setCookie('token', token);
+        response.cookies.set("token" , token , {
+			maxAge: 60 * 60 * 24 * 7,
+			path: '/',
+			sameSite: 'Lax',
+			secure: true,
+		})
+        setCookie('token', token , {
+			maxAge: 60 * 60 * 24 * 7,
+			path: '/',
+			sameSite: 'Lax',
+			secure: true,
+		});
 
         return response
         } catch (error) {
