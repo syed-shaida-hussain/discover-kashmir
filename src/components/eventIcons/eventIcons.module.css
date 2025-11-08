@@ -9,3 +9,14 @@
     margin-left: 10px;
     cursor: pointer;
 }
+
+ .link, .icon{
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+ .link:hover , .icon:hover{
+  color: var(--cta-btn-color);
+  transform: scale(1.05);
+}

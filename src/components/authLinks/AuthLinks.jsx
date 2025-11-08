@@ -59,9 +59,9 @@ const AuthLinks = React.memo(() => {
       {open && (
         <div className={styles.responsiveMenu}>
           <Link href="/" onClick={closeMenu}>Homepage</Link>
-          <Link href="/about" onClick={closeMenu}>About</Link>
           {!isUserLoggedIn && <Link href="/login" onClick={closeMenu}>Login</Link>}
           <Link href="/write" onClick={closeMenu}>Create</Link>
+          <Link href="/about" onClick={closeMenu}>About</Link>
           {isUserLoggedIn && <span onClick={handleLogout}>Logout</span>}
         </div>
       )}

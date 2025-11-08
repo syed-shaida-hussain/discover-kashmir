@@ -18,6 +18,38 @@
     flex: 1;
 }
 
+ .link, .logo {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+ .link:hover {
+  color: var(--cta-btn-color);
+  transform: scale(1.05); 
+}
+
+.logo:hover{
+      color: var(--cta-btn-color);
+}
+
+.toggleContainer {
+  transition: all 0.3s ease;
+}
+
+.toggleContainer:hover {
+  background-color: var(--toggle-bg);
+  transform: scale(1.05);
+}
+
+.toggleCircle {
+  transition: all 0.3s ease;
+}
+
+.toggleCircle:hover {
+  transform: scale(1.15);
+}
+
 @media only screen and (max-width : 1280px) {
     .links{
         gap: 15px;

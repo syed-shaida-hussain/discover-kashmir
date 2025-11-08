@@ -11,6 +11,17 @@
     display: none;
 }
 
+ .link {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+ .link:hover {
+  color: var(--cta-btn-color);
+  transform: scale(1.05);
+}
+
 @media only screen and (max-width : 640px) {
     .burger{
         display: block;

@@ -6,7 +6,7 @@ const BlogPage = ({searchParams}) => {
   const { cat } = searchParams
   return (
     <div className= {styles.container}>
-        <h1 className= {styles.heading}>{cat} Blog</h1>
+        <h1 className= {styles.heading}>{cat} Blogs</h1>
         <div className= {styles.content}>
             <CardList cat = {cat} />
             <Menu />

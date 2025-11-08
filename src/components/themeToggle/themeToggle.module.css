@@ -6,7 +6,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: black; */
     position: relative;
     margin: auto;
     padding: 2px;
@@ -16,7 +15,6 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    /* background-color: white; */
     position: absolute;
 }
 
@@ -50,21 +48,28 @@
   transition: all 0.3s ease;
 }
 
-/* 🌞 Light mode - left */
 .light {
   left: 3px;
   background-color: var(--bg);
 }
 
-/* 🌙 Dark mode - right */
 .dark {
   left: calc(100% - 25px);
   background-color: var(--cta-btn-color);
 }
 
-/* While mounting */
 .loading {
   left: 3px;
   background-color: var(--light-text-color);
   opacity: 0.7;
+}
+
+ .toggleContainer {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+ .toggleContainer:hover {
+  transform: scale(1.05);
 }
