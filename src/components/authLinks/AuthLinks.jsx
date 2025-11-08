@@ -1,70 +1,75 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import styles from "./authLinks.module.css";
-import Link from 'next/link';
-import axios from "axios"
-import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '@/app/GlobalRedux/features/user/userSlice';
+import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "@/app/GlobalRedux/features/user/userSlice";
 import { MdMenu } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-const isServer = typeof window === "undefined";
 
-
-const AuthLinks = () => {
-  const [open , setOpen] = useState(false);
+const AuthLinks = React.memo(() => {
+  const [open, setOpen] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const {isUserLoggedIn} = useSelector((store) => store.user)
+  const { isUserLoggedIn } = useSelector((store) => store.user);
 
-  const logout = async () => {
+  const [mounted,setMounted] = useState(false)
+  
+    useEffect(() => {
+      setMounted(true)
+    },[])
+  
+  if(!mounted) return null
+
+  const handleLogout = async () => {
     try {
-      const res = await axios.get("/api/user/logout")
-      setOpen(false)
-      router.push('/login')
-      if(!isServer) {
-        localStorage.removeItem("token")
-      }
-      dispatch(logoutUser())
+      await axios.get("/api/user/logout");
+      if (typeof window !== "undefined") localStorage.removeItem("token");
+      dispatch(logoutUser());
+      router.push("/login");
+      setOpen(false);
     } catch (error) {
-      console.log(error)
+      console.error("Logout failed:", error);
     }
-  }
+  };
 
-  const closeModal = () => {
-    setOpen(false)
-  }
+  const closeMenu = () => setOpen(false);
 
   return (
     <>
-      {
-        !isUserLoggedIn  && <Link href= "/login" className= {styles.link}>Login</Link> 
-      }
-         <>
-          <Link className= {styles.link} href="/write">Create</Link>
-          {isUserLoggedIn && <span className= {styles.link} onClick={() =>logout()}>Logout</span>}
-        </>
-      
-      <div className= {styles.burger}>
-      {!open ? <MdMenu className= {styles.burger} onClick={() => setOpen(true)} />  : <IoClose className= {styles.burger} onClick={() => setOpen(false)} />}
+      {!isUserLoggedIn && <Link href="/login" className={styles.link}>Login</Link>}
+      <Link href="/write" className={styles.link}>Create</Link>
+      {isUserLoggedIn && (
+        <span className={styles.link} onClick={handleLogout}>
+          Logout
+        </span>
+      )}
+
+      <div className={styles.burger}>
+        {open ? (
+          <IoClose onClick={() => setOpen(false)} />
+        ) : (
+          <MdMenu onClick={() => setOpen(true)} />
+        )}
       </div>
-      {
-        open && (
-          <div className= {styles.responsiveMenu}>
-            <Link href="/" onClick={closeModal}>Homepage</Link>
-            <Link href="/about" onClick={closeModal}>About</Link>
-          {!isUserLoggedIn && <Link href= "/login" onClick={closeModal}>Login</Link> } 
-          <>
-          <Link href="/write" onClick={closeModal}>Create</Link>
-          {isUserLoggedIn && <span onClick={() =>logout()}>Logout</span>}
-          </>
 
-          </div>
-        )
-      }
+      {open && (
+        <div className={styles.responsiveMenu}>
+          <Link href="/" onClick={closeMenu}>Homepage</Link>
+          <Link href="/about" onClick={closeMenu}>About</Link>
+          {!isUserLoggedIn && <Link href="/login" onClick={closeMenu}>Login</Link>}
+          <Link href="/write" onClick={closeMenu}>Create</Link>
+          {isUserLoggedIn && <span onClick={handleLogout}>Logout</span>}
+        </div>
+      )}
     </>
-  )
-}
+  );
+});
 
-export default AuthLinks
+AuthLinks.displayName = "AuthLinks";
+
+
+export default AuthLinks;

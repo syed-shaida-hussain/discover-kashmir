@@ -4,6 +4,7 @@
   --light-bg : #f0f0f0;
   --light-text-color : #626262;
   --cta-btn-color : #0f172a;
+   --toggle-bg: #cdc8c8; 
 }
 
 *{
@@ -27,7 +28,8 @@ a{
   --text-color : #ddd;
   --light-bg : #1f273a;
   --light-text-color : #a6a6a6;
-  --cta-btn-color : white
+  --cta-btn-color : white;
+  --toggle-bg: #344469;
 }
 
 .container{

@@ -1,13 +1,31 @@
 "use client";
 
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { createContext, useContext, useEffect, useState } from "react";
 
-const ThemeProvider = ({children}) => {
-const {theme} = useSelector((store) => store.theme);
+const ThemeContext = createContext();
+
+export const useTheme = () => useContext(ThemeContext);
+
+export default function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "light";
+    return document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <div className= {theme}>{children}</div>
-  )
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
-
-export default ThemeProvider

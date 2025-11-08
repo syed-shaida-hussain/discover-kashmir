@@ -1,44 +1,38 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
-import "./themeToggle.module.css"
-import Image from 'next/image'
-import styles from "./themeToggle.module.css"
-import { useDispatch, useSelector } from 'react-redux'
-import { toggleTheme } from '@/app/GlobalRedux/features/theme/ThemeSlice';
+import { useTheme } from "@/app/GlobalRedux/features/theme/ThemeProvider";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import styles from "./themeToggle.module.css";
 
-const ThemeToggle = () => {
-  const dispatch = useDispatch();
-  const {theme} = useSelector((state) => state.theme);
+export default function ThemeToggle() {
+  const [mounted, setMounted] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      dispatch({ type: "theme/setTheme", payload: savedTheme });
-    }
-  }, [dispatch]);
+    setMounted(true);
+  }, []);
 
-  const handleToggleTheme = () => {
-    dispatch(toggleTheme());
-  };
+  if (!mounted) return null
 
   return (
-    <div className={styles.container} onClick={handleToggleTheme} style={theme === "light" ? {
-      background : "black"
-    } : {
-      background : "white"
-    }}>
-      <Image src= "/moon.png" alt='moon' width={14} height={12} />
-      <div className={styles.circle} style={theme === "light" ? {
-      background : "white",
-      right : 1
-    } : {
-      background : "black",
-      left : 1
-    }}></div>
-      <Image src= "/sun.png" alt='sun' width={14} height={12} />
+    <div
+      className={styles.toggleContainer}
+      onClick={toggleTheme}
+      title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+    >
+      <div
+        className={`${styles.toggleCircle} ${
+          theme === "dark" ? styles.dark : styles.light
+        }`}
+      >
+        <Image
+          src={theme === "dark" ? "/moon.png" : "/sun.png"}
+          alt="theme icon"
+          width={16}
+          height={16}
+        />
+      </div>
     </div>
-  )
+  );
 }
-
-export default ThemeToggle

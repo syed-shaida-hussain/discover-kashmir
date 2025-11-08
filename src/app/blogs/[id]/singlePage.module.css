@@ -75,6 +75,42 @@
     border-radius: 5px;
 }
 
+.skeletonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.bigSkeleton {
+  width: 100%;
+  max-width: 1000px;
+  height: 600px;
+  border-radius: 16px;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f5f5f5 50%,
+    #e0e0e0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite, pulse 1.5s ease-in-out infinite;
+  box-shadow: 0px 0px 10px #555;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Pulse effect */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+
 @media only screen and (max-width : 1536px) {
     .title{
         font-size: 44px;

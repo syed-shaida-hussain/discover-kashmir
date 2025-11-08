@@ -8,7 +8,7 @@ const Footer = () => {
     <section className= {styles.container}>
       <div className= {styles.info}>
         <div className= {styles.logo}>
-          <Image src = "/gulmarg.avif" alt='logo' height = {50} width={50} className= {styles.logoImg} />
+          <Image src = "/gulmarg.avif" alt='logo' height = {50} width={50} className= {styles.logoImg} quality={100} />
           <h1 className= {styles.logoText}>Discover Kashmir</h1>
         </div>
         <p className= {styles.desc}>{`Built with Next.js for a smooth user experience, Discover Kashmir is your gateway to Kashmir's beauty. We unveil its wonders through captivating stories, and stunning visuals, inspiring you to explore the magic of this unforgettable region. `}</p>
