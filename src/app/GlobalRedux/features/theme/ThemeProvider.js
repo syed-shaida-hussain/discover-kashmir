@@ -8,11 +8,10 @@ export const useTheme = () => useContext(ThemeContext);
 
 export default function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "light";
-    return document.documentElement.classList.contains("dark")
-      ? "dark"
-      : "light";
-  });
+  if (typeof window === "undefined") return "dark";
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+});
+
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
