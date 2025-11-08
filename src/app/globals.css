@@ -4,7 +4,8 @@
   --light-bg : #f0f0f0;
   --light-text-color : #626262;
   --cta-btn-color : #0f172a;
-   --toggle-bg: #cdc8c8; 
+   --toggle-bg: #cdc8c8;
+   --login-bg : #dadfe0;
 }
 
 *{
@@ -30,6 +31,8 @@ a{
   --light-text-color : #a6a6a6;
   --cta-btn-color : white;
   --toggle-bg: #344469;
+  --login-bg : #1e293b;
+
 }
 
 .container{
@@ -80,5 +83,6 @@ a{
 @media only screen and (max-width : 640px) {
   .wrapper{
     max-width: 475px;
+    padding: 0 20px;
   }
 }

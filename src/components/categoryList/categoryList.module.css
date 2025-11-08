@@ -23,6 +23,11 @@
     color: white;
 }
 
+.category:hover{
+    scale: 1.03;
+    transition: all 0.3s ease;
+}
+
 .category.winter{
     background-color: #64748b;
 }
